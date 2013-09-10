@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZSWebserviceCallerandparser.h"
 
-@interface ZSViewController : UIViewController
+@interface ZSViewController : UIViewController <ServiceCallingDelegate>
 
 @end

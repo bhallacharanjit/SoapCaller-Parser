@@ -34,8 +34,6 @@ static ZSWebserviceCallerandparser * instance;
     mutableDictforResult = [[NSMutableDictionary alloc] init];
     //calling the web service
     [self callServicewithServiceRequest:servicerequest withPath:servicePath andMethodName:serviceMethod];
-    //returning the result
-    return ResultArray;
 }
 
 
@@ -98,8 +96,6 @@ didReceiveResponse:(NSURLResponse *) response {
     [xmlParser parse];
     [ResultArray addObject:mutableDictforResult];
     if ([self.delegate respondsToSelector:@selector(processCompleted:)]) {
-        NSLog(@"%d",
-              ResultArray.count);
         [self.delegate processCompleted:ResultArray];
     }
     
@@ -136,9 +132,6 @@ didEndElement:(NSString *)elementName
  namespaceURI:(NSString *)namespaceURI
 qualifiedName:(NSString *)qName
 {
-    
-    NSLog(@"%@ result-%@",elementName,soapResults);
-    
     if ([self.parsingtags containsObject:elementName]) {
         if (soapResults != nil || ![soapResults isEqualToString:@""]) {
             [mutableDictforResult setObject:soapResults forKey:elementName];
